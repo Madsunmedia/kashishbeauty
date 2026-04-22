@@ -34,6 +34,23 @@
       --font-sub: 'Playfair Display', serif;
       --font-body: 'Jost', sans-serif;
       --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+      --nav-bg: rgba(13, 6, 24, 0.85);
+      --hero-overlay: linear-gradient(rgba(26,10,46,0.85), rgba(26,10,46,0.78));
+    }
+
+    :root[data-theme="light"] {
+      --dark-bg: #FCF8F3;
+      --deep-plum: #F5E6D3;
+      --card-bg: rgba(201, 168, 76, 0.1);
+      --card-border: rgba(201, 168, 76, 0.3);
+      --text-primary: #1A0A2E;
+      --text-secondary: rgba(26, 10, 46, 0.75);
+      --text-muted: rgba(26, 10, 46, 0.5);
+      --glass-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(201, 168, 76, 0.4);
+      --nav-bg: rgba(252, 248, 243, 0.95);
+      --royal-purple: #8B1A4A;
+      --hero-overlay: linear-gradient(rgba(252, 248, 243, 0.7), rgba(252, 248, 243, 0.85));
     }
 
     *, *::before, *::after {
@@ -59,6 +76,7 @@
       overflow-x: hidden;
       cursor: none;
       line-height: 1.6;
+      transition: background 0.5s var(--transition-smooth), color 0.5s var(--transition-smooth);
     }
 
     /* Grain overlay */
@@ -331,10 +349,10 @@
 
     .navbar.scrolled {
       padding: 10px 0;
-      background: rgba(13, 6, 24, 0.85);
+      background: var(--nav-bg);
       backdrop-filter: blur(20px) saturate(180%);
       -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border-bottom: 1px solid rgba(201,168,76,0.1);
+      border-bottom: 1px solid var(--glass-border);
     }
 
     .nav-inner {
@@ -428,6 +446,42 @@
 
     .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--glass-border);
+      color: var(--gold);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(201, 168, 76, 0.1);
+      border-color: var(--gold);
+      transform: rotate(15deg);
+    }
+
+    .theme-toggle svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.5s var(--transition-smooth);
+    }
+
+    [data-theme="light"] .sun-icon { display: none; }
+    [data-theme="dark"] .moon-icon { display: none; }
+    html:not([data-theme="light"]) .moon-icon { display: none; } /* Default is dark */
+    html[data-theme="light"] .sun-icon { display: none; }
+    html[data-theme="light"] .moon-icon { display: block; }
+    html:not([data-theme="light"]) .sun-icon { display: block; }
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
     /* Mobile drawer */
@@ -494,9 +548,10 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background-image: linear-gradient(rgba(26,10,46,0.82), rgba(26,10,46,0.75)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=85');
+      background-image: var(--hero-overlay), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=85');
       background-size: cover;
       background-position: center;
+      transition: background-image 0.5s ease;
     }
 
     .hero-canvas {
@@ -1848,15 +1903,28 @@
         <li><a href="#booking" class="btn-gold btn-pulse nav-cta">Book Appointment</a></li>
       </ul>
 
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
   <!-- Mobile drawer -->
   <div class="mobile-overlay" id="mobileOverlay"></div>
   <div class="mobile-drawer" id="mobileDrawer">
+    <div style="padding: 20px; display: flex; justify-content: flex-end;">
+      <button class="theme-toggle" id="themeToggleMobile" aria-label="Toggle theme">
+        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+    </div>
     <a href="#home">Home</a>
     <a href="#services">Services</a>
     <a href="#gallery">Gallery</a>
@@ -2805,6 +2873,39 @@
     if (dateInput) {
       const today = new Date().toISOString().split('T')[0];
       dateInput.setAttribute('min', today);
+    }
+
+    /* ───────────────────────────────────────────
+       THEME SWITCHER (DAY/NIGHT MODE)
+    ─────────────────────────────────────────── */
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggleMobile = document.getElementById('themeToggleMobile');
+    const htmlElement = document.documentElement;
+
+    function setTheme(theme) {
+      if (theme === 'light') {
+        htmlElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        htmlElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+
+    function toggleTheme() {
+      const currentTheme = localStorage.getItem('theme') || 'dark';
+      setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+    if (themeToggleMobile) themeToggleMobile.addEventListener('click', toggleTheme);
+
+    // Initial theme load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      setTheme('light');
+    } else {
+      setTheme('dark');
     }
 
   </script>
