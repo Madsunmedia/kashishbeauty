@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=85" />
   <style>
     /* ═══════════════════════════════════════════
        CSS CUSTOM PROPERTIES & RESET
@@ -194,6 +195,33 @@
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
       margin: 20px auto 30px;
+    }
+
+    /* Image Shimmer & Loading */
+    .img-wrapper {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(201,168,76,0.05), rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+      background-size: 200% 200%;
+      animation: shimmerBg 2s infinite linear;
+      width: 100%;
+      height: 100%;
+    }
+    @keyframes shimmerBg {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .actual-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      position: absolute;
+      inset: 0;
+    }
+    .actual-img.loaded {
+      opacity: 1;
     }
 
     /* Shimmer button */
@@ -461,6 +489,15 @@
       justify-content: center;
       overflow: hidden;
     }
+    
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: linear-gradient(rgba(26,10,46,0.82), rgba(26,10,46,0.75)), url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=85');
+      background-size: cover;
+      background-position: center;
+    }
 
     .hero-canvas {
       position: absolute;
@@ -533,11 +570,6 @@
       animation: fadeUp 0.8s ease 1.2s forwards;
     }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .scroll-indicator {
       position: absolute;
       bottom: 30px;
@@ -566,11 +598,6 @@
       border-bottom: 2px solid var(--gold);
       transform: rotate(45deg);
       animation: bounceArrow 2s ease-in-out infinite;
-    }
-
-    @keyframes bounceArrow {
-      0%, 100% { transform: rotate(45deg) translateY(0); }
-      50% { transform: rotate(45deg) translateY(8px); }
     }
 
     /* ═══════════════════════════════════════════
@@ -632,11 +659,13 @@
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
       border-radius: 20px;
-      padding: 28px 22px;
+      padding: 0;
       transition: all 0.4s ease;
       transform-style: preserve-3d;
       cursor: none;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .service-card::before {
@@ -653,13 +682,23 @@
       transition: opacity 0.5s ease;
       background-size: 300% 300%;
       animation: shimmerBorder 3s linear infinite;
+      pointer-events: none;
+      z-index: 10;
     }
 
     .service-card:hover::before { opacity: 1; }
-
-    @keyframes shimmerBorder {
-      0% { background-position: 0% 0%; }
-      100% { background-position: 300% 300%; }
+    
+    .service-img-header {
+      height: 160px;
+      flex-shrink: 0;
+      width: 100%;
+    }
+    
+    .service-content {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
     }
 
     .service-card:hover {
@@ -702,6 +741,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-top: auto;
     }
 
     .service-price {
@@ -753,7 +793,10 @@
       position: relative;
       max-width: 1100px;
       margin: 0 auto;
-      background: linear-gradient(135deg, rgba(139, 26, 74, 0.2), rgba(45, 27, 105, 0.2));
+      background-image: linear-gradient(rgba(26,10,46,0.78), rgba(26,10,46,0.78)), url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=1920&q=85');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       border: 1px solid rgba(201,168,76,0.25);
       border-radius: 28px;
       padding: 60px;
@@ -1095,6 +1138,7 @@
 
     .gallery-placeholder {
       width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1148,7 +1192,7 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       color: var(--gold);
-      z-index: 1;
+      z-index: 10;
     }
 
     /* Lightbox */
@@ -1271,8 +1315,8 @@
     }
 
     .testimonial-avatar {
-      width: 44px;
-      height: 44px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--rani-pink), var(--royal-purple));
       display: flex;
@@ -1297,6 +1341,22 @@
     /* ═══════════════════════════════════════════
        10. MEMBERSHIP / PRICING
     ═══════════════════════════════════════════ */
+
+    .membership-section {
+      position: relative;
+      z-index: 1;
+    }
+    .membership-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1920&q=60');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.08;
+      z-index: -1;
+      pointer-events: none;
+    }
 
     .pricing-grid {
       display: grid;
@@ -1763,11 +1823,9 @@
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#home" class="nav-logo">
-        <!-- Lotus/Mandala SVG -->
         <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="25" cy="25" r="23" stroke="#C9A84C" stroke-width="0.8" opacity="0.4"/>
           <circle cx="25" cy="25" r="17" stroke="#C9A84C" stroke-width="0.6" opacity="0.3"/>
-          <!-- Lotus petals -->
           <path d="M25 8 Q30 18 25 25 Q20 18 25 8Z" fill="#C9A84C" opacity="0.6"/>
           <path d="M25 42 Q30 32 25 25 Q20 32 25 42Z" fill="#C9A84C" opacity="0.6"/>
           <path d="M8 25 Q18 20 25 25 Q18 30 8 25Z" fill="#C9A84C" opacity="0.6"/>
@@ -1812,6 +1870,7 @@
        HERO SECTION
   ═══════════════════════════════════════════ -->
   <section class="hero" id="home">
+    <div class="hero-bg"></div>
     <canvas class="hero-canvas" id="heroCanvas"></canvas>
     <div class="hero-content">
       <h1 class="hero-title">
@@ -1908,8 +1967,8 @@
 
       <div class="about-grid">
         <div class="about-image-frame reveal">
-          <div class="about-image-placeholder">
-            ✨ Kashish Beauty Parlour<br/>Premium Salon Interior
+          <div class="img-wrapper">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=480&q=85" alt="Beautician working in a premium salon" class="actual-img" loading="lazy" onload="this.classList.add('loaded')" onerror="this.onerror=null; this.closest('.img-wrapper').innerHTML='<div class=\\'about-image-placeholder\\' style=\\'height:100%;width:100%;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(135deg,rgba(139,26,74,0.3),rgba(45,27,105,0.3))\\'>✨ Kashish Beauty Parlour<br/>Premium Salon Interior</div>';" />
           </div>
         </div>
         <div class="about-text reveal">
@@ -2043,7 +2102,7 @@
   <!-- ═══════════════════════════════════════════
        MEMBERSHIP / PRICING
   ═══════════════════════════════════════════ -->
-  <section class="section" id="membership">
+  <section class="section membership-section" id="membership">
     <div class="container">
       <h2 class="section-heading reveal-left">Exclusive Memberships</h2>
       <div class="gold-divider"></div>
@@ -2444,6 +2503,15 @@
     /* ───────────────────────────────────────────
        SERVICES DATA & RENDERING
     ─────────────────────────────────────────── */
+    const categoryImages = {
+      facial: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=400&h=160&q=80",
+      bridal: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=400&h=160&q=80",
+      hair: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&h=160&q=80",
+      nails: "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=400&h=160&q=80",
+      body: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=400&h=160&q=80",
+      makeup: "https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=400&h=160&q=80"
+    };
+
     const servicesData = [
       { icon: '✦', cat: 'facial', catLabel: 'Facial & Skin Care', name: 'Signature Gold Facial', desc: '24K gold-infused luxury facial for radiant, youthful skin.', price: '₹1,499' },
       { icon: '✦', cat: 'facial', catLabel: 'Facial & Skin Care', name: 'D-Tan & Bleach', desc: 'Full face, neck & arms de-tan with premium bleach.', price: '₹299' },
@@ -2466,13 +2534,18 @@
       card.dataset.category = s.cat;
       card.style.transitionDelay = `${i * 0.08}s`;
       card.innerHTML = `
-        <span class="service-icon">${s.icon}</span>
-        <div class="service-category">${s.catLabel}</div>
-        <div class="service-name">${s.name}</div>
-        <div class="service-desc">${s.desc}</div>
-        <div class="service-bottom">
-          <span class="service-price">${s.price} onwards</span>
-          <a href="#booking" class="service-book">Book</a>
+        <div class="img-wrapper service-img-header">
+           <img src="${categoryImages[s.cat]}" alt="${s.catLabel}" loading="lazy" class="actual-img" onload="this.classList.add('loaded')" onerror="this.onerror=null; this.closest('.img-wrapper').style.display='none';" />
+        </div>
+        <div class="service-content">
+          <span class="service-icon">${s.icon}</span>
+          <div class="service-category">${s.catLabel}</div>
+          <div class="service-name">${s.name}</div>
+          <div class="service-desc">${s.desc}</div>
+          <div class="service-bottom">
+            <span class="service-price">${s.price} onwards</span>
+            <a href="#booking" class="service-book">Book</a>
+          </div>
         </div>
       `;
       servicesGrid.appendChild(card);
@@ -2502,18 +2575,22 @@
        GALLERY DATA & RENDERING
     ─────────────────────────────────────────── */
     const galleryData = [
-      { cat: 'bridal', label: 'Bridal', title: 'Royal Bridal Look', h: 320, colors: ['#8B1A4A','#2D1B69'] },
-      { cat: 'hair', label: 'Hair', title: 'Balayage Highlights', h: 240, colors: ['#2D1B69','#1A0A2E'] },
-      { cat: 'nails', label: 'Nails', title: 'Bridal Nail Art', h: 200, colors: ['#C9A84C','#8B1A4A'] },
-      { cat: 'bridal', label: 'Bridal', title: 'Mehndi Ceremony', h: 280, colors: ['#8B1A4A','#C9A84C'] },
-      { cat: 'skin', label: 'Skin', title: 'Gold Facial Glow', h: 220, colors: ['#C9A84C','#2D1B69'] },
-      { cat: 'hair', label: 'Hair', title: 'Wedding Hair Styling', h: 300, colors: ['#1A0A2E','#8B1A4A'] },
-      { cat: 'bridal', label: 'Bridal', title: 'Airbrush Bridal Glam', h: 260, colors: ['#8B1A4A','#1A0A2E'] },
-      { cat: 'nails', label: 'Nails', title: 'Gel Extensions', h: 200, colors: ['#2D1B69','#C9A84C'] },
-      { cat: 'skin', label: 'Skin', title: 'De-Tan Treatment', h: 240, colors: ['#1A0A2E','#C9A84C'] },
-      { cat: 'bridal', label: 'Bridal', title: 'Traditional Dulhan', h: 350, colors: ['#8B1A4A','#C9A84C'] },
-      { cat: 'hair', label: 'Hair', title: 'Keratin Smoothening', h: 220, colors: ['#2D1B69','#1A0A2E'] },
-      { cat: 'skin', label: 'Skin', title: 'OxyGeneo Results', h: 240, colors: ['#C9A84C','#1A0A2E'] },
+      { cat: 'bridal', label: 'Bridal Makeup', title: 'Bridal Makeup', h: 320, img: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=600&q=85', colors: ['#8B1A4A','#2D1B69'] },
+      { cat: 'bridal', label: 'Bridal Look', title: 'Bridal Look', h: 280, img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=85', colors: ['#8B1A4A','#C9A84C'] },
+      { cat: 'bridal', label: 'Engagement Makeup', title: 'Engagement Makeup', h: 260, img: 'https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?auto=format&fit=crop&w=600&q=85', colors: ['#8B1A4A','#1A0A2E'] },
+
+      { cat: 'hair', label: 'Hair Styling', title: 'Hair Styling', h: 300, img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=85', colors: ['#1A0A2E','#8B1A4A'] },
+      { cat: 'hair', label: 'Hair Color', title: 'Hair Color', h: 240, img: 'https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?auto=format&fit=crop&w=600&q=85', colors: ['#2D1B69','#1A0A2E'] },
+      { cat: 'hair', label: 'Keratin Treatment', title: 'Keratin Treatment', h: 220, img: 'https://images.unsplash.com/photo-1590159983013-d4c6bce05b7f?auto=format&fit=crop&w=600&q=85', colors: ['#2D1B69','#1A0A2E'] },
+
+      { cat: 'nails', label: 'Nail Art', title: 'Nail Art', h: 200, img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=85', colors: ['#C9A84C','#8B1A4A'] },
+      { cat: 'nails', label: 'Gel Nails', title: 'Gel Nails', h: 200, img: 'https://images.unsplash.com/photo-1604902396830-aca29e19b067?auto=format&fit=crop&w=600&q=85', colors: ['#2D1B69','#C9A84C'] },
+
+      { cat: 'skin', label: 'Gold Facial', title: 'Gold Facial', h: 220, img: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=85', colors: ['#C9A84C','#2D1B69'] },
+      { cat: 'skin', label: 'Skin Treatment', title: 'Skin Treatment', h: 240, img: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=600&q=85', colors: ['#1A0A2E','#C9A84C'] },
+
+      { cat: 'skin', label: 'Bridal Mehndi', title: 'Bridal Mehndi', h: 350, img: 'https://images.unsplash.com/photo-1583384724953-bc1f49f7c5c7?auto=format&fit=crop&w=600&q=85', colors: ['#8B1A4A','#C9A84C'] },
+      { cat: 'skin', label: 'Mehendi Art', title: 'Mehendi Art', h: 240, img: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=600&q=85', colors: ['#C9A84C','#1A0A2E'] }
     ];
 
     const galleryGrid = document.getElementById('galleryGrid');
@@ -2528,8 +2605,10 @@
         item.dataset.category = g.cat;
         item.innerHTML = `
           <span class="gallery-label">${g.label}</span>
-          <div class="gallery-placeholder" style="height:${g.h}px; background: linear-gradient(135deg, ${g.colors[0]}, ${g.colors[1]});">
-            ${g.title}
+          <div class="gallery-placeholder" style="height:${g.h}px; padding:0; background:none;">
+            <div class="img-wrapper" style="height:100%; width:100%;">
+              <img src="${g.img}" alt="${g.title}" loading="lazy" class="actual-img" onload="this.classList.add('loaded')" onerror="this.onerror=null; this.closest('.img-wrapper').outerHTML='<div style=\\'height:${g.h}px; width:100%; background: linear-gradient(135deg, ${g.colors[0]}, ${g.colors[1]}); display:flex; align-items:center; justify-content:center; color:var(--text-muted);\\'>${g.title}</div>';" />
+            </div>
           </div>
           <div class="gallery-overlay">
             <span>${g.title}</span>
@@ -2557,7 +2636,7 @@
     function openLightbox(g) {
       const lightbox = document.getElementById('lightbox');
       const content = document.getElementById('lightboxContent');
-      content.innerHTML = `<div class="gallery-placeholder" style="width:600px;max-width:80vw;height:400px;background:linear-gradient(135deg,${g.colors[0]},${g.colors[1]});display:flex;align-items:center;justify-content:center;font-family:var(--font-sub);font-size:1.5rem;color:var(--text-primary);">${g.title}</div>`;
+      content.innerHTML = `<img src="${g.img.replace('&w=600', '&w=1200')}" alt="${g.title}" style="max-width: 100%; max-height: 80vh; display: block; object-fit: contain;" onerror="this.onerror=null; this.outerHTML='<div class=\\'gallery-placeholder\\' style=\\'width:600px;max-width:80vw;height:400px;background:linear-gradient(135deg,${g.colors[0]},${g.colors[1]});display:flex;align-items:center;justify-content:center;font-family:var(--font-sub);font-size:1.5rem;color:var(--text-primary);\\'>${g.title}</div>';"/>`;
       lightbox.classList.add('active');
     }
 
@@ -2575,12 +2654,12 @@
        TESTIMONIALS DATA & RENDERING
     ─────────────────────────────────────────── */
     const testimonials = [
-      { name: 'Priya Sharma', service: 'Bridal Makeup', initials: 'PS', quote: 'Kashish made me feel like an absolute queen on my wedding day. The airbrush makeup lasted 14 hours and I received compliments all night! Best decision ever.' },
-      { name: 'Neha Verma', service: 'Hair Color & Styling', initials: 'NV', quote: 'The balayage they did is absolutely gorgeous — my hair has never looked this good. The team really understood the exact shade I wanted.' },
-      { name: 'Sunita Kaur', service: 'Gold Facial', initials: 'SK', quote: 'The 24K Gold Facial is pure luxury. My skin was literally glowing for days after. I\'ve become a regular now — can\'t imagine going anywhere else!' },
-      { name: 'Ritika Agarwal', service: 'Pre-Bridal Package', initials: 'RA', quote: 'I took the full pre-bridal package and the transformation was incredible. Three sessions and my skin was wedding-ready. Worth every rupee!' },
-      { name: 'Pooja Mehta', service: 'Dulhan Mehndi', initials: 'PM', quote: 'The mehndi artist at Kashish is phenomenally talented. The design was intricate, the color came out so dark and rich. Everyone asked who did my mehndi!' },
-      { name: 'Ananya Singh', service: 'Party Makeup', initials: 'AS', quote: 'I had party makeup done for my anniversary and was stunned by the result. They perfectly matched the look to my outfit. Truly professional and friendly team.' },
+      { name: 'Priya Sharma', service: 'Bridal Makeup', initials: 'PS', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=56&h=56&q=80', quote: 'Kashish made me feel like an absolute queen on my wedding day. The airbrush makeup lasted 14 hours and I received compliments all night! Best decision ever.' },
+      { name: 'Neha Verma', service: 'Hair Color & Styling', initials: 'NV', img: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=56&h=56&q=80', quote: 'The balayage they did is absolutely gorgeous — my hair has never looked this good. The team really understood the exact shade I wanted.' },
+      { name: 'Sunita Kaur', service: 'Gold Facial', initials: 'SK', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=56&h=56&q=80', quote: 'The 24K Gold Facial is pure luxury. My skin was literally glowing for days after. I\\'ve become a regular now — can\\'t imagine going anywhere else!' },
+      { name: 'Ritika Agarwal', service: 'Pre-Bridal Package', initials: 'RA', img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=56&h=56&q=80', quote: 'I took the full pre-bridal package and the transformation was incredible. Three sessions and my skin was wedding-ready. Worth every rupee!' },
+      { name: 'Pooja Mehta', service: 'Dulhan Mehndi', initials: 'PM', img: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=56&h=56&q=80', quote: 'The mehndi artist at Kashish is phenomenally talented. The design was intricate, the color came out so dark and rich. Everyone asked who did my mehndi!' },
+      { name: 'Ananya Singh', service: 'Party Makeup', initials: 'AS', img: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=56&h=56&q=80', quote: 'I had party makeup done for my anniversary and was stunned by the result. They perfectly matched the look to my outfit. Truly professional and friendly team.' },
     ];
 
     const testimonialTrack = document.getElementById('testimonialTrack');
@@ -2593,7 +2672,9 @@
         <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
         <div class="testimonial-quote">"${t.quote}"</div>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">${t.initials}</div>
+          <div class="testimonial-avatar img-wrapper" style="border: 2px solid var(--gold); padding:0; background:transparent;">
+             <img src="${t.img}" alt="${t.name}" loading="lazy" class="actual-img" style="border-radius: 50%;" onload="this.classList.add('loaded')" onerror="this.onerror=null; this.closest('.testimonial-avatar').innerHTML='${t.initials}'; this.closest('.testimonial-avatar').style.background='';"/>
+          </div>
           <div>
             <div class="testimonial-name">${t.name}</div>
             <div class="testimonial-service">${t.service}</div>
