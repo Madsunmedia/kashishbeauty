@@ -2514,15 +2514,15 @@
 
     const servicesData = [
       { icon: '✦', cat: 'facial', catLabel: 'Facial & Skin Care', name: 'Signature Gold Facial', desc: '24K gold-infused luxury facial for radiant, youthful skin.', price: '₹1,499' },
-      { icon: '✦', cat: 'facial', catLabel: 'Facial & Skin Care', name: 'D-Tan & Bleach', desc: 'Full face, neck & arms de-tan with premium bleach.', price: '₹299' },
-      { icon: '✦', cat: 'facial', catLabel: 'Facial & Skin Care', name: 'OxyGeneo Super Facial', desc: '3-in-1 super facial — exfoliate, infuse & oxygenate.', price: '₹2,499' },
-      { icon: '👰', cat: 'bridal', catLabel: 'Bridal Services', name: 'Bridal Makeup', desc: 'HD, Airbrush or Traditional — your perfect bridal look.', price: '₹7,999' },
+      { icon: '✦', cat: 'facial', catLabel: 'Facial & Skin Care', name: 'D-Tan & Bleach', desc: 'Full face, neck & arms de-tan with premium bleach.', price: '₹299', img: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=400&h=160&q=80' },
+      { icon: '✦', cat: 'facial', catLabel: 'Facial & Skin Care', name: 'OxyGeneo Super Facial', desc: '3-in-1 super facial — exfoliate, infuse & oxygenate.', price: '₹2,499', img: 'https://images.unsplash.com/photo-1616394584738-1d7010419266?auto=format&fit=crop&w=400&h=160&q=80' },
+      { icon: '👰', cat: 'bridal', catLabel: 'Bridal Services', name: 'Bridal Makeup', desc: 'HD, Airbrush or Traditional — your perfect bridal look.', price: '₹7,999', img: 'https://images.unsplash.com/photo-1595780186987-9be731b5391a?auto=format&fit=crop&w=400&h=160&q=80' },
       { icon: '👰', cat: 'bridal', catLabel: 'Bridal Services', name: 'Pre-Bridal Package', desc: 'Complete skin prep over 3 sittings for bridal glow.', price: '₹4,999' },
-      { icon: '🌺', cat: 'bridal', catLabel: 'Bridal Services', name: 'Dulhan Mehndi', desc: 'Intricate full hands & feet mehndi by expert artists.', price: '₹2,999' },
+      { icon: '🌺', cat: 'bridal', catLabel: 'Bridal Services', name: 'Dulhan Mehndi', desc: 'Intricate full hands & feet mehndi by expert artists.', price: '₹2,999', img: 'https://images.unsplash.com/photo-1610018610738-4e3ed9d90ec8?auto=format&fit=crop&w=400&h=160&q=80' },
       { icon: '💇‍♀️', cat: 'hair', catLabel: 'Hair Services', name: 'Hair Color & Highlights', desc: 'Global, Ombre or Balayage — transform your look.', price: '₹1,999' },
-      { icon: '💇‍♀️', cat: 'hair', catLabel: 'Hair Services', name: 'Keratin Treatment', desc: 'Premium smoothening for silky, frizz-free hair.', price: '₹3,499' },
+      { icon: '💇‍♀️', cat: 'hair', catLabel: 'Hair Services', name: 'Keratin Treatment', desc: 'Premium smoothening for silky, frizz-free hair.', price: '₹3,499', img: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=400&h=160&q=80' },
       { icon: '💅', cat: 'nails', catLabel: 'Nail Art', name: 'Gel / Acrylic Nails', desc: 'Stunning gel or acrylic extensions with custom art.', price: '₹899' },
-      { icon: '💅', cat: 'nails', catLabel: 'Nail Art', name: 'Manicure & Pedicure', desc: 'Regular, Spa or French — pamper your hands & feet.', price: '₹499' },
+      { icon: '💅', cat: 'nails', catLabel: 'Nail Art', name: 'Manicure & Pedicure', desc: 'Regular, Spa or French — pamper your hands & feet.', price: '₹499', img: 'https://images.unsplash.com/photo-1519014816548-bf5fe059e98b?auto=format&fit=crop&w=400&h=160&q=80' },
       { icon: '🧖‍♀️', cat: 'body', catLabel: 'Body & Wellness', name: 'Full Body Waxing', desc: 'Rica, Chocolate or Liposoluble — smooth, glowing skin.', price: '₹1,299' },
       { icon: '💄', cat: 'makeup', catLabel: 'Makeup', name: 'Party Makeup', desc: 'HD & Airbrush party glam with hair setting combo.', price: '₹2,499' },
     ];
@@ -2535,7 +2535,7 @@
       card.style.transitionDelay = `${i * 0.08}s`;
       card.innerHTML = `
         <div class="img-wrapper service-img-header">
-           <img src="${categoryImages[s.cat]}" alt="${s.catLabel}" loading="lazy" class="actual-img" onload="this.classList.add('loaded')" onerror="this.onerror=null; this.closest('.img-wrapper').style.display='none';" />
+           <img src="${s.img || categoryImages[s.cat]}" alt="${s.catLabel}" loading="lazy" class="actual-img" onload="this.classList.add('loaded')" onerror="this.onerror=null; this.closest('.img-wrapper').style.display='none';" />
         </div>
         <div class="service-content">
           <span class="service-icon">${s.icon}</span>
@@ -2575,13 +2575,13 @@
        GALLERY DATA & RENDERING
     ─────────────────────────────────────────── */
     const galleryData = [
-      { cat: 'bridal', label: 'Bridal Makeup', title: 'Bridal Makeup', h: 320, img: 'https://images.unsplash.com/photo-1591604466107-ec97de577aff?auto=format&fit=crop&w=600&q=85', colors: ['#8B1A4A','#2D1B69'] },
+      { cat: 'bridal', label: 'Bridal Makeup', title: 'Bridal Makeup', h: 320, img: 'https://images.unsplash.com/photo-1595780186987-9be731b5391a?auto=format&fit=crop&w=600&q=85', colors: ['#8B1A4A','#2D1B69'] },
       { cat: 'bridal', label: 'Bridal Look', title: 'Bridal Look', h: 280, img: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=85', colors: ['#8B1A4A','#C9A84C'] },
       { cat: 'bridal', label: 'Engagement Makeup', title: 'Engagement Makeup', h: 260, img: 'https://images.unsplash.com/photo-1607748862156-7c548e7e98f4?auto=format&fit=crop&w=600&q=85', colors: ['#8B1A4A','#1A0A2E'] },
 
       { cat: 'hair', label: 'Hair Styling', title: 'Hair Styling', h: 300, img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=85', colors: ['#1A0A2E','#8B1A4A'] },
       { cat: 'hair', label: 'Hair Color', title: 'Hair Color', h: 240, img: 'https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?auto=format&fit=crop&w=600&q=85', colors: ['#2D1B69','#1A0A2E'] },
-      { cat: 'hair', label: 'Keratin Treatment', title: 'Keratin Treatment', h: 220, img: 'https://images.unsplash.com/photo-1590159983013-d4c6bce05b7f?auto=format&fit=crop&w=600&q=85', colors: ['#2D1B69','#1A0A2E'] },
+      { cat: 'hair', label: 'Keratin Treatment', title: 'Keratin Treatment', h: 220, img: 'https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=85', colors: ['#2D1B69','#1A0A2E'] },
 
       { cat: 'nails', label: 'Nail Art', title: 'Nail Art', h: 200, img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=85', colors: ['#C9A84C','#8B1A4A'] },
       { cat: 'nails', label: 'Gel Nails', title: 'Gel Nails', h: 200, img: 'https://images.unsplash.com/photo-1604902396830-aca29e19b067?auto=format&fit=crop&w=600&q=85', colors: ['#2D1B69','#C9A84C'] },
@@ -2589,8 +2589,8 @@
       { cat: 'skin', label: 'Gold Facial', title: 'Gold Facial', h: 220, img: 'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=85', colors: ['#C9A84C','#2D1B69'] },
       { cat: 'skin', label: 'Skin Treatment', title: 'Skin Treatment', h: 240, img: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=600&q=85', colors: ['#1A0A2E','#C9A84C'] },
 
-      { cat: 'skin', label: 'Bridal Mehndi', title: 'Bridal Mehndi', h: 350, img: 'https://images.unsplash.com/photo-1583384724953-bc1f49f7c5c7?auto=format&fit=crop&w=600&q=85', colors: ['#8B1A4A','#C9A84C'] },
-      { cat: 'skin', label: 'Mehendi Art', title: 'Mehendi Art', h: 240, img: 'https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?auto=format&fit=crop&w=600&q=85', colors: ['#C9A84C','#1A0A2E'] }
+      { cat: 'skin', label: 'Bridal Mehndi', title: 'Bridal Mehndi', h: 350, img: 'https://images.unsplash.com/photo-1620165506042-4b77f98a2eb2?auto=format&fit=crop&w=600&q=85', colors: ['#8B1A4A','#C9A84C'] },
+      { cat: 'skin', label: 'Mehendi Art', title: 'Mehendi Art', h: 240, img: 'https://images.unsplash.com/photo-1610018610738-4e3ed9d90ec8?auto=format&fit=crop&w=600&q=85', colors: ['#C9A84C','#1A0A2E'] }
     ];
 
     const galleryGrid = document.getElementById('galleryGrid');
