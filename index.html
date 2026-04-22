@@ -1,0 +1,2731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kashish Beauty Parlour — Where Beauty Meets Tradition</title>
+  <meta name="description" content="Kashish Beauty Parlour — Premium bridal makeup, hair styling, skincare & beauty services. 10+ years of making brides radiant. Book your appointment today!" />
+  <meta name="keywords" content="beauty parlour, bridal makeup, mehndi, hair salon, skincare, Indian beauty, Kashish" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════════
+       CSS CUSTOM PROPERTIES & RESET
+    ═══════════════════════════════════════════ */
+    :root {
+      --deep-plum: #1A0A2E;
+      --gold: #C9A84C;
+      --gold-light: #E8D48B;
+      --gold-dark: #A8893A;
+      --rose-cream: #F5E6D3;
+      --rani-pink: #8B1A4A;
+      --royal-purple: #2D1B69;
+      --dark-bg: #0D0618;
+      --card-bg: rgba(45, 27, 105, 0.15);
+      --card-border: rgba(201, 168, 76, 0.25);
+      --text-primary: #F5E6D3;
+      --text-secondary: rgba(245, 230, 211, 0.7);
+      --text-muted: rgba(245, 230, 211, 0.5);
+      --glass-bg: rgba(26, 10, 46, 0.6);
+      --glass-border: rgba(201, 168, 76, 0.2);
+      --font-display: 'Cormorant Garamond', serif;
+      --font-sub: 'Playfair Display', serif;
+      --font-body: 'Jost', sans-serif;
+      --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold) var(--deep-plum);
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--deep-plum); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--dark-bg);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      cursor: none;
+      line-height: 1.6;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* Custom cursor */
+    .cursor-dot {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--gold);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 100000;
+      transition: transform 0.15s ease;
+      mix-blend-mode: screen;
+      box-shadow: 0 0 15px var(--gold), 0 0 30px rgba(201,168,76,0.3);
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid rgba(201,168,76,0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+    }
+
+    .cursor-ring.hovering {
+      width: 56px;
+      height: 56px;
+      border-color: var(--gold);
+    }
+
+    /* Petal trail */
+    .petal-trail {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50% 0 50% 50%;
+      pointer-events: none;
+      z-index: 99998;
+      opacity: 0.6;
+      animation: petalFade 0.8s ease forwards;
+    }
+
+    @keyframes petalFade {
+      to { opacity: 0; transform: scale(0) rotate(180deg); }
+    }
+
+    /* Animated gradient mesh background */
+    .bg-mesh {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(139,26,74,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(45,27,105,0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
+        var(--dark-bg);
+      animation: meshShift 20s ease-in-out infinite;
+    }
+
+    @keyframes meshShift {
+      0%, 100% {
+        background:
+          radial-gradient(ellipse at 20% 50%, rgba(139,26,74,0.15) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 20%, rgba(45,27,105,0.2) 0%, transparent 50%),
+          radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.08) 0%, transparent 50%),
+          var(--dark-bg);
+      }
+      33% {
+        background:
+          radial-gradient(ellipse at 60% 30%, rgba(139,26,74,0.18) 0%, transparent 50%),
+          radial-gradient(ellipse at 30% 70%, rgba(45,27,105,0.25) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 60%, rgba(201,168,76,0.1) 0%, transparent 50%),
+          var(--dark-bg);
+      }
+      66% {
+        background:
+          radial-gradient(ellipse at 40% 80%, rgba(139,26,74,0.12) 0%, transparent 50%),
+          radial-gradient(ellipse at 70% 40%, rgba(45,27,105,0.18) 0%, transparent 50%),
+          radial-gradient(ellipse at 20% 30%, rgba(201,168,76,0.12) 0%, transparent 50%),
+          var(--dark-bg);
+      }
+    }
+
+    /* ═══════════════════════════════════════════
+       UTILITY / COMMON STYLES
+    ═══════════════════════════════════════════ */
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section { padding: 100px 0; position: relative; }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-sub);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 60px;
+      font-weight: 400;
+    }
+
+    .gold-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 20px auto 30px;
+    }
+
+    /* Shimmer button */
+    .btn-gold {
+      display: inline-block;
+      padding: 14px 36px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--deep-plum);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 1rem;
+      border: none;
+      border-radius: 60px;
+      cursor: none;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-gold::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -100%;
+      width: 60%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: skewX(-20deg);
+      transition: left 0.6s ease;
+    }
+
+    .btn-gold:hover::after { left: 150%; }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 14px 36px;
+      background: transparent;
+      color: var(--gold);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 1rem;
+      border: 1.5px solid var(--gold);
+      border-radius: 60px;
+      cursor: none;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-outline:hover {
+      background: rgba(201,168,76,0.1);
+      box-shadow: 0 0 25px rgba(201,168,76,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* Book Now pulse */
+    .btn-pulse {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 10px rgba(201,168,76,0.3); }
+      50% { box-shadow: 0 0 25px rgba(201,168,76,0.6), 0 0 50px rgba(201,168,76,0.2); }
+    }
+
+    /* Reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s var(--transition-smooth), transform 0.8s var(--transition-smooth);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      clip-path: inset(0 100% 0 0);
+      transition: opacity 0.8s ease, clip-path 0.8s ease;
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      clip-path: inset(0 0% 0 0);
+    }
+
+    /* ═══════════════════════════════════════════
+       1. NAVIGATION
+    ═══════════════════════════════════════════ */
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 18px 0;
+      transition: all 0.4s ease;
+    }
+
+    .navbar.scrolled {
+      padding: 10px 0;
+      background: rgba(13, 6, 24, 0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      z-index: 1001;
+    }
+
+    .nav-logo svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      font-weight: 400;
+      letter-spacing: 0.5px;
+      position: relative;
+      transition: color 0.3s ease;
+      cursor: none;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      padding: 10px 24px !important;
+      font-size: 0.88rem !important;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: none;
+      z-index: 1001;
+      padding: 8px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--gold);
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Mobile drawer */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 320px;
+      height: 100vh;
+      background: rgba(13, 6, 24, 0.97);
+      backdrop-filter: blur(30px);
+      z-index: 1000;
+      padding: 100px 40px 40px;
+      transition: right 0.5s var(--transition-smooth);
+      border-left: 1px solid rgba(201,168,76,0.15);
+    }
+
+    .mobile-drawer.open { right: 0; }
+
+    .mobile-drawer a {
+      display: block;
+      padding: 16px 0;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-family: var(--font-sub);
+      font-size: 1.2rem;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      transition: color 0.3s ease, padding-left 0.3s ease;
+      cursor: none;
+    }
+
+    .mobile-drawer a:hover {
+      color: var(--gold);
+      padding-left: 12px;
+    }
+
+    .mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 999;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .mobile-overlay.visible { opacity: 1; }
+
+    /* ═══════════════════════════════════════════
+       2. HERO SECTION
+    ═══════════════════════════════════════════ */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* Mandala pattern overlay */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.05;
+      background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='100' cy='100' r='80' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Ccircle cx='100' cy='100' r='60' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Ccircle cx='100' cy='100' r='40' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Ccircle cx='100' cy='100' r='20' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Cpath d='M100 20 Q130 60 100 100 Q70 60 100 20' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Cpath d='M180 100 Q140 130 100 100 Q140 70 180 100' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Cpath d='M100 180 Q70 140 100 100 Q130 140 100 180' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3Cpath d='M20 100 Q60 70 100 100 Q60 130 20 100' fill='none' stroke='%23C9A84C' stroke-width='0.5'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 24px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      perspective: 800px;
+    }
+
+    .hero-title .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(60px) rotateX(20deg);
+      animation: heroWordIn 0.8s var(--transition-smooth) forwards;
+    }
+
+    .hero-title .word:nth-child(1) { animation-delay: 0.3s; }
+    .hero-title .word:nth-child(2) { animation-delay: 0.45s; }
+    .hero-title .word:nth-child(3) { animation-delay: 0.6s; }
+    .hero-title .word:nth-child(4) { animation-delay: 0.75s; }
+
+    @keyframes heroWordIn {
+      to { opacity: 1; transform: translateY(0) rotateX(0); }
+    }
+
+    .hero-title .accent { color: var(--gold); }
+
+    .hero-subtitle {
+      font-family: var(--font-sub);
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--text-secondary);
+      margin-bottom: 40px;
+      font-weight: 400;
+      letter-spacing: 1px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1s forwards;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.2s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.6s forwards;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid var(--gold);
+      border-bottom: 2px solid var(--gold);
+      transform: rotate(45deg);
+      animation: bounceArrow 2s ease-in-out infinite;
+    }
+
+    @keyframes bounceArrow {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(8px); }
+    }
+
+    /* ═══════════════════════════════════════════
+       3. MARQUEE TRUST BAR
+    ═══════════════════════════════════════════ */
+
+    .marquee-section {
+      padding: 20px 0;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      overflow: hidden;
+      background: rgba(26, 10, 46, 0.3);
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marqueeScroll 30s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-track:hover { animation-play-state: paused; }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 40px;
+      white-space: nowrap;
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .marquee-item .diamond {
+      color: var(--gold);
+      font-size: 0.5rem;
+      opacity: 0.5;
+    }
+
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ═══════════════════════════════════════════
+       4. SERVICES SECTION
+    ═══════════════════════════════════════════ */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 28px 22px;
+      transition: all 0.4s ease;
+      transform-style: preserve-3d;
+      cursor: none;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 20px;
+      padding: 1px;
+      background: linear-gradient(135deg, transparent 40%, var(--gold) 50%, transparent 60%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      background-size: 300% 300%;
+      animation: shimmerBorder 3s linear infinite;
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    @keyframes shimmerBorder {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 300% 300%; }
+    }
+
+    .service-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      box-shadow: 0 8px 40px rgba(201,168,76,0.1), inset 0 0 30px rgba(201,168,76,0.03);
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+
+    .service-category {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+      opacity: 0.8;
+    }
+
+    .service-name {
+      font-family: var(--font-sub);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .service-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .service-price {
+      font-family: var(--font-body);
+      font-weight: 500;
+      color: var(--gold);
+      font-size: 0.95rem;
+    }
+
+    .service-book {
+      padding: 6px 18px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+      border-radius: 30px;
+      font-size: 0.78rem;
+      font-family: var(--font-body);
+      cursor: none;
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .service-book:hover {
+      background: var(--gold);
+      color: var(--deep-plum);
+    }
+
+    /* Category glow colors */
+    .service-card[data-category="facial"] { --cat-glow: rgba(232, 180, 120, 0.06); }
+    .service-card[data-category="bridal"] { --cat-glow: rgba(139, 26, 74, 0.08); }
+    .service-card[data-category="hair"] { --cat-glow: rgba(45, 27, 105, 0.08); }
+    .service-card[data-category="nails"] { --cat-glow: rgba(201, 168, 76, 0.06); }
+    .service-card[data-category="body"] { --cat-glow: rgba(100, 180, 150, 0.06); }
+    .service-card[data-category="makeup"] { --cat-glow: rgba(200, 100, 150, 0.06); }
+
+    .service-card:hover {
+      background: var(--cat-glow, var(--glass-bg));
+    }
+
+    /* ═══════════════════════════════════════════
+       5. SIGNATURE PACKAGE
+    ═══════════════════════════════════════════ */
+
+    .signature-section {
+      padding: 80px 0;
+    }
+
+    .signature-card {
+      position: relative;
+      max-width: 1100px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(139, 26, 74, 0.2), rgba(45, 27, 105, 0.2));
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 28px;
+      padding: 60px;
+      overflow: hidden;
+    }
+
+    .signature-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='200' cy='200' r='180' fill='none' stroke='%23C9A84C' stroke-width='0.3' opacity='0.15'/%3E%3Ccircle cx='200' cy='200' r='140' fill='none' stroke='%23C9A84C' stroke-width='0.3' opacity='0.1'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='%23C9A84C' stroke-width='0.3' opacity='0.08'/%3E%3C/svg%3E") center right no-repeat;
+      background-size: 400px;
+      opacity: 0.3;
+    }
+
+    .signature-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .signature-badge {
+      display: inline-block;
+      padding: 6px 20px;
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 30px;
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .signature-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .signature-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .package-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 40px;
+      margin-bottom: 30px;
+    }
+
+    .package-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .package-list .check {
+      color: var(--gold);
+      font-size: 1.1rem;
+    }
+
+    .signature-price {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--rose-cream);
+      margin-bottom: 6px;
+    }
+
+    .signature-urgency {
+      font-size: 0.88rem;
+      color: var(--rani-pink);
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+
+    /* ═══════════════════════════════════════════
+       6. ABOUT SECTION
+    ═══════════════════════════════════════════ */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image-frame {
+      position: relative;
+      aspect-ratio: 3/4;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 2px solid rgba(201,168,76,0.3);
+      box-shadow: 0 0 40px rgba(201,168,76,0.1);
+    }
+
+    .about-image-frame::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 26px;
+      background: conic-gradient(from 0deg, var(--gold), var(--rani-pink), var(--royal-purple), var(--gold));
+      z-index: -1;
+      animation: rotateGlow 6s linear infinite;
+    }
+
+    @keyframes rotateGlow {
+      to { transform: rotate(360deg); }
+    }
+
+    .about-image-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(139,26,74,0.3), rgba(45,27,105,0.3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sub);
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 30px;
+    }
+
+    /* Mandala decorative corners */
+    .about-image-frame::after {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      width: 60px;
+      height: 60px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      opacity: 0.3;
+    }
+
+    .about-text h3 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .about-text p {
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 30px;
+      margin: 30px 0;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    .about-quote {
+      position: relative;
+      padding: 20px 24px;
+      border-left: 3px solid var(--gold);
+      margin-top: 24px;
+      background: rgba(201,168,76,0.05);
+      border-radius: 0 12px 12px 0;
+    }
+
+    .about-quote p {
+      font-family: var(--font-sub);
+      font-style: italic;
+      color: var(--rose-cream);
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+    }
+
+    .about-quote cite {
+      font-style: normal;
+      color: var(--gold);
+      font-size: 0.88rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       7. HOW IT WORKS - TIMELINE
+    ═══════════════════════════════════════════ */
+
+    .timeline {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 0;
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    .timeline-line {
+      position: absolute;
+      top: 64px;
+      left: 12%;
+      right: 12%;
+      height: 2px;
+      background: rgba(201,168,76,0.15);
+    }
+
+    .timeline-line-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--gold);
+      transition: width 1.5s ease;
+    }
+
+    .timeline-line-fill.animated { width: 100%; }
+
+    .timeline-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+      padding: 0 12px;
+      text-align: center;
+    }
+
+    .step-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--deep-plum);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-bottom: 18px;
+      transition: all 0.5s ease;
+    }
+
+    .step-circle.glowing {
+      background: rgba(201,168,76,0.15);
+      box-shadow: 0 0 20px rgba(201,168,76,0.3);
+    }
+
+    .step-icon {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .step-title {
+      font-family: var(--font-sub);
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .step-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════════
+       8. GALLERY SECTION
+    ═══════════════════════════════════════════ */
+
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 24px;
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.25);
+      color: var(--text-secondary);
+      border-radius: 30px;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      cursor: none;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: rgba(201,168,76,0.15);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .gallery-grid {
+      columns: 3;
+      column-gap: 20px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: none;
+      transition: all 0.4s ease;
+    }
+
+    .gallery-item:hover { transform: scale(1.02); }
+
+    .gallery-placeholder {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 20px;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13, 6, 24, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay span {
+      font-family: var(--font-sub);
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+
+    .gallery-overlay small {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Category label */
+    .gallery-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 4px 14px;
+      background: rgba(13,6,24,0.75);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 20px;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      z-index: 1;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+    }
+
+    .lightbox.active { display: flex; }
+
+    .lightbox-content {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(201,168,76,0.3);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: none;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.3rem;
+      cursor: none;
+      transition: all 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+      background: var(--gold);
+      color: var(--deep-plum);
+    }
+
+    /* ═══════════════════════════════════════════
+       9. TESTIMONIALS
+    ═══════════════════════════════════════════ */
+
+    .testimonials-section {
+      background: linear-gradient(180deg, transparent, rgba(45,27,105,0.08), transparent);
+      position: relative;
+    }
+
+    /* Gold dot pattern */
+    .testimonials-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(201,168,76,0.08) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .testimonial-track-wrapper {
+      overflow: hidden;
+      position: relative;
+      padding: 20px 0;
+    }
+
+    .testimonial-track {
+      display: flex;
+      gap: 24px;
+      animation: testimonialScroll 40s linear infinite;
+      width: max-content;
+    }
+
+    .testimonial-track:hover { animation-play-state: paused; }
+
+    @keyframes testimonialScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .testimonial-card {
+      flex-shrink: 0;
+      width: 360px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 28px;
+      transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-4px);
+    }
+
+    .testimonial-stars {
+      color: #F5C518;
+      font-size: 1rem;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-sub);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      line-height: 1.7;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--rani-pink), var(--royal-purple));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--gold);
+    }
+
+    .testimonial-name {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .testimonial-service {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       10. MEMBERSHIP / PRICING
+    ═══════════════════════════════════════════ */
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: all 0.4s ease;
+    }
+
+    .pricing-card.popular {
+      border-color: var(--gold);
+      transform: scale(1.05);
+      box-shadow: 0 0 40px rgba(201,168,76,0.15);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 24px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--deep-plum);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 30px;
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+
+    .pricing-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .pricing-tier {
+      font-family: var(--font-sub);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .pricing-price {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .pricing-period {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .pricing-features li {
+      padding: 8px 0;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid rgba(201,168,76,0.06);
+    }
+
+    .pricing-features li:last-child { border: none; }
+
+    /* ═══════════════════════════════════════════
+       11. BOOKING / CONTACT
+    ═══════════════════════════════════════════ */
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .booking-form {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(26, 10, 46, 0.5);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 12px;
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      outline: none;
+      cursor: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 15px rgba(201,168,76,0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-group select option {
+      background: var(--deep-plum);
+      color: var(--text-primary);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      font-size: 1.05rem;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .contact-card h4 {
+      font-family: var(--font-sub);
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-card p,
+    .contact-card a {
+      color: var(--text-secondary);
+      font-size: 0.92rem;
+      line-height: 1.8;
+      text-decoration: none;
+      display: block;
+    }
+
+    .contact-card a:hover { color: var(--gold); }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: none;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+
+    .whatsapp-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.3);
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, rgba(45,27,105,0.2), rgba(26,10,46,0.3));
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Floating WhatsApp button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9998;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      cursor: none;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+      animation: floatBounce 3s ease-in-out infinite;
+    }
+
+    .whatsapp-float:hover { transform: scale(1.1); }
+
+    .whatsapp-float svg { width: 32px; height: 32px; fill: #fff; }
+
+    @keyframes floatBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ═══════════════════════════════════════════
+       12. FOOTER
+    ═══════════════════════════════════════════ */
+
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .footer {
+      padding: 60px 0 30px;
+      background: rgba(13, 6, 24, 0.5);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-brand .nav-logo-text {
+      font-size: 1.6rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .footer h4 {
+      font-family: var(--font-sub);
+      font-size: 1.05rem;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li { margin-bottom: 10px; }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.3s ease;
+      cursor: none;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .social-link {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: none;
+    }
+
+    .social-link:hover {
+      background: rgba(201,168,76,0.15);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 24px;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Back to top */
+    .back-to-top {
+      position: fixed;
+      bottom: 100px;
+      right: 28px;
+      width: 46px;
+      height: 46px;
+      background: var(--glass-bg);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.2rem;
+      cursor: none;
+      z-index: 9997;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      backdrop-filter: blur(10px);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      background: rgba(201,168,76,0.15);
+      transform: translateY(-3px);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE DESIGN
+    ═══════════════════════════════════════════ */
+
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { columns: 2; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .pricing-card.popular { transform: scale(1); }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .booking-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .package-list { grid-template-columns: 1fr; }
+      .timeline { flex-wrap: wrap; gap: 30px; }
+      .timeline-line { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-drawer { display: block; }
+
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-grid { columns: 1; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .section { padding: 70px 0; }
+
+      .hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+
+      .signature-card { padding: 30px 20px; }
+
+      .about-stats { flex-direction: column; gap: 20px; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      .booking-form { padding: 24px; }
+
+      .timeline {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .timeline-step {
+        flex-direction: row;
+        text-align: left;
+        gap: 20px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .step-circle { flex-shrink: 0; }
+
+      /* Hide custom cursor on touch devices */
+      .cursor-dot, .cursor-ring { display: none; }
+      body { cursor: auto; }
+      * { cursor: auto !important; }
+    }
+
+    /* prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .marquee-track, .testimonial-track {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background mesh -->
+  <div class="bg-mesh"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">
+        <!-- Lotus/Mandala SVG -->
+        <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="25" cy="25" r="23" stroke="#C9A84C" stroke-width="0.8" opacity="0.4"/>
+          <circle cx="25" cy="25" r="17" stroke="#C9A84C" stroke-width="0.6" opacity="0.3"/>
+          <!-- Lotus petals -->
+          <path d="M25 8 Q30 18 25 25 Q20 18 25 8Z" fill="#C9A84C" opacity="0.6"/>
+          <path d="M25 42 Q30 32 25 25 Q20 32 25 42Z" fill="#C9A84C" opacity="0.6"/>
+          <path d="M8 25 Q18 20 25 25 Q18 30 8 25Z" fill="#C9A84C" opacity="0.6"/>
+          <path d="M42 25 Q32 20 25 25 Q32 30 42 25Z" fill="#C9A84C" opacity="0.6"/>
+          <path d="M12 12 Q20 18 25 25 Q18 20 12 12Z" fill="#C9A84C" opacity="0.4"/>
+          <path d="M38 12 Q30 18 25 25 Q32 20 38 12Z" fill="#C9A84C" opacity="0.4"/>
+          <path d="M12 38 Q20 32 25 25 Q18 30 12 38Z" fill="#C9A84C" opacity="0.4"/>
+          <path d="M38 38 Q30 32 25 25 Q32 30 38 38Z" fill="#C9A84C" opacity="0.4"/>
+          <circle cx="25" cy="25" r="4" fill="#C9A84C" opacity="0.8"/>
+        </svg>
+        <span class="nav-logo-text">Kashish</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#booking" class="btn-gold btn-pulse nav-cta">Book Appointment</a></li>
+      </ul>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-drawer" id="mobileDrawer">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#about">About</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#membership">Membership</a>
+    <a href="#booking">Book Appointment</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════ -->
+  <section class="hero" id="home">
+    <canvas class="hero-canvas" id="heroCanvas"></canvas>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="word">Where</span>
+        <span class="word accent">Beauty</span>
+        <span class="word">Meets</span>
+        <span class="word accent">Tradition</span>
+      </h1>
+      <p class="hero-subtitle">Premium Beauty Services in the Heart of India</p>
+      <div class="hero-ctas">
+        <a href="#services" class="btn-outline">Explore Services</a>
+        <a href="#booking" class="btn-gold btn-pulse">Book Now</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       MARQUEE TRUST BAR
+  ═══════════════════════════════════════════ -->
+  <div class="marquee-section">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-item">⭐ 500+ Happy Brides <span class="diamond">◆</span></div>
+      <div class="marquee-item">💄 10+ Years Experience <span class="diamond">◆</span></div>
+      <div class="marquee-item">🏆 Award Winning Salon <span class="diamond">◆</span></div>
+      <div class="marquee-item">✨ Premium Products Only <span class="diamond">◆</span></div>
+      <div class="marquee-item">👩‍🎨 Certified Beauticians <span class="diamond">◆</span></div>
+      <div class="marquee-item">🌸 Bridal Specialist <span class="diamond">◆</span></div>
+      <div class="marquee-item">⭐ 500+ Happy Brides <span class="diamond">◆</span></div>
+      <div class="marquee-item">💄 10+ Years Experience <span class="diamond">◆</span></div>
+      <div class="marquee-item">🏆 Award Winning Salon <span class="diamond">◆</span></div>
+      <div class="marquee-item">✨ Premium Products Only <span class="diamond">◆</span></div>
+      <div class="marquee-item">👩‍🎨 Certified Beauticians <span class="diamond">◆</span></div>
+      <div class="marquee-item">🌸 Bridal Specialist <span class="diamond">◆</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICES SECTION
+  ═══════════════════════════════════════════ -->
+  <section class="section" id="services">
+    <div class="container">
+      <h2 class="section-heading reveal-left">Our Expertise</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle reveal">Discover our curated range of premium beauty services</p>
+
+      <div class="services-grid" id="servicesGrid">
+        <!-- Cards inserted by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SIGNATURE PACKAGE
+  ═══════════════════════════════════════════ -->
+  <section class="signature-section" id="signature">
+    <div class="container">
+      <div class="signature-card reveal">
+        <div class="signature-content">
+          <span class="signature-badge">✦ Signature Package</span>
+          <h2 class="signature-title">The Kashish Bridal Experience</h2>
+          <p class="signature-desc">A complete, head-to-toe bridal transformation designed for the most important day of your life. Our master beauticians ensure you look every bit the queen you are.</p>
+          <ul class="package-list">
+            <li><span class="check">✓</span> HD / Airbrush Bridal Makeup</li>
+            <li><span class="check">✓</span> Saree / Lehenga Draping</li>
+            <li><span class="check">✓</span> Bridal Hair Styling</li>
+            <li><span class="check">✓</span> Full Body D-Tan (3 sessions)</li>
+            <li><span class="check">✓</span> Pre-Bridal Facials (3 sittings)</li>
+            <li><span class="check">✓</span> Dulhan Mehndi (Full Hands & Feet)</li>
+            <li><span class="check">✓</span> Nail Art & Extensions</li>
+            <li><span class="check">✓</span> Eye Lash Extensions</li>
+            <li><span class="check">✓</span> Engagement & Reception Touch-Up</li>
+            <li><span class="check">✓</span> Complimentary Mother-of-Bride Makeup</li>
+          </ul>
+          <div class="signature-price">Starting ₹15,999</div>
+          <p class="signature-urgency">🔥 Limited Slots This Wedding Season — Book Early!</p>
+          <a href="#booking" class="btn-gold btn-pulse">Enquire Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT SECTION
+  ═══════════════════════════════════════════ -->
+  <section class="section" id="about">
+    <div class="container">
+      <h2 class="section-heading reveal-left">The Kashish Story</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle reveal">A decade of making India's women feel beautiful</p>
+
+      <div class="about-grid">
+        <div class="about-image-frame reveal">
+          <div class="about-image-placeholder">
+            ✨ Kashish Beauty Parlour<br/>Premium Salon Interior
+          </div>
+        </div>
+        <div class="about-text reveal">
+          <h3>Where Every Woman Feels Like Royalty</h3>
+          <p>Born from a passion for celebrating Indian beauty, Kashish Beauty Parlour has been transforming lives for over a decade. We blend time-honoured Indian beauty traditions with cutting-edge global techniques to create an experience that's truly one of a kind.</p>
+          <p>From intimate facial rituals using 24K gold and rose extracts to grand bridal transformations that have graced hundreds of weddings — every service at Kashish is crafted with love, skill, and the finest products available.</p>
+
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-number" data-target="2000">0</span>
+              <span class="stat-label">Brides Beautified</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="10">0</span>
+              <span class="stat-label">Years of Excellence</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="4.9" data-decimal="true">0</span>
+              <span class="stat-label">★ Google Rating</span>
+            </div>
+          </div>
+
+          <div class="about-quote">
+            <p>"Every woman deserves to feel like a queen — that's the Kashish promise. We don't just beautify faces, we ignite confidence."</p>
+            <cite>— Founder, Kashish Beauty Parlour</cite>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       HOW IT WORKS
+  ═══════════════════════════════════════════ -->
+  <section class="section" id="howItWorks">
+    <div class="container">
+      <h2 class="section-heading reveal-left">Your Beauty Journey</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle reveal">Four simple steps to your perfect look</p>
+
+      <div class="timeline" id="timeline">
+        <div class="timeline-line">
+          <div class="timeline-line-fill" id="timelineFill"></div>
+        </div>
+
+        <div class="timeline-step reveal">
+          <div class="step-circle">1</div>
+          <div>
+            <div class="step-icon">📅</div>
+            <div class="step-title">Book Online</div>
+            <div class="step-desc">Pick your service, choose your date, and book in seconds via our form or WhatsApp.</div>
+          </div>
+        </div>
+
+        <div class="timeline-step reveal">
+          <div class="step-circle">2</div>
+          <div>
+            <div class="step-icon">💬</div>
+            <div class="step-title">Consultation</div>
+            <div class="step-desc">Our experts understand your skin, style & vision — crafting a personalised plan.</div>
+          </div>
+        </div>
+
+        <div class="timeline-step reveal">
+          <div class="step-circle">3</div>
+          <div>
+            <div class="step-icon">💆‍♀️</div>
+            <div class="step-title">Treatment</div>
+            <div class="step-desc">Relax in our luxurious studio as our certified beauticians work their magic.</div>
+          </div>
+        </div>
+
+        <div class="timeline-step reveal">
+          <div class="step-circle">4</div>
+          <div>
+            <div class="step-icon">✨</div>
+            <div class="step-title">Glow & Go</div>
+            <div class="step-desc">Walk out feeling radiant, confident, and absolutely gorgeous. You're ready!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       GALLERY SECTION
+  ═══════════════════════════════════════════ -->
+  <section class="section" id="gallery">
+    <div class="container">
+      <h2 class="section-heading reveal-left">Our Work Speaks</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle reveal">A glimpse into the beauty we create every day</p>
+
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="bridal">Bridal</button>
+        <button class="filter-btn" data-filter="hair">Hair</button>
+        <button class="filter-btn" data-filter="nails">Nails</button>
+        <button class="filter-btn" data-filter="skin">Skin</button>
+      </div>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Gallery items injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <div class="lightbox-content" id="lightboxContent"></div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       TESTIMONIALS
+  ═══════════════════════════════════════════ -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container">
+      <h2 class="section-heading reveal-left">Voices of Radiance</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle reveal">What our beautiful clients say about us</p>
+    </div>
+
+    <div class="testimonial-track-wrapper">
+      <div class="testimonial-track" id="testimonialTrack">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       MEMBERSHIP / PRICING
+  ═══════════════════════════════════════════ -->
+  <section class="section" id="membership">
+    <div class="container">
+      <h2 class="section-heading reveal-left">Exclusive Memberships</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle reveal">Unlock premium perks and priority booking</p>
+
+      <div class="pricing-grid">
+        <div class="pricing-card reveal">
+          <div class="pricing-icon">🌸</div>
+          <div class="pricing-tier">Silver Member</div>
+          <div class="pricing-price">₹999</div>
+          <div class="pricing-period">per month</div>
+          <ul class="pricing-features">
+            <li>10% off all services</li>
+            <li>Birthday special discount</li>
+            <li>Monthly newsletter</li>
+            <li>Priority scheduling</li>
+          </ul>
+          <a href="#booking" class="btn-outline" style="width:100%;text-align:center;">Choose Silver</a>
+        </div>
+
+        <div class="pricing-card popular reveal">
+          <span class="popular-badge">Most Popular</span>
+          <div class="pricing-icon">👑</div>
+          <div class="pricing-tier">Gold Member</div>
+          <div class="pricing-price">₹1,999</div>
+          <div class="pricing-period">per month</div>
+          <ul class="pricing-features">
+            <li>20% off all services</li>
+            <li>Priority booking slots</li>
+            <li>Free monthly cleanup</li>
+            <li>Exclusive bridal previews</li>
+            <li>Complimentary threading</li>
+          </ul>
+          <a href="#booking" class="btn-gold" style="width:100%;text-align:center;">Choose Gold</a>
+        </div>
+
+        <div class="pricing-card reveal">
+          <div class="pricing-icon">💎</div>
+          <div class="pricing-tier">Diamond Member</div>
+          <div class="pricing-price">₹3,499</div>
+          <div class="pricing-period">per month</div>
+          <ul class="pricing-features">
+            <li>30% off all services</li>
+            <li>Unlimited cleanups</li>
+            <li>Bridal prep discount</li>
+            <li>VIP lounge access</li>
+            <li>Free hair spa monthly</li>
+            <li>Dedicated beautician</li>
+          </ul>
+          <a href="#booking" class="btn-outline" style="width:100%;text-align:center;">Choose Diamond</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       BOOKING / CONTACT
+  ═══════════════════════════════════════════ -->
+  <section class="section" id="booking">
+    <div class="container">
+      <h2 class="section-heading reveal-left">Reserve Your Glow</h2>
+      <div class="gold-divider"></div>
+      <p class="section-subtitle reveal">Book your appointment or reach out — we'd love to hear from you</p>
+
+      <div class="booking-grid">
+        <form class="booking-form reveal" id="bookingForm" onsubmit="return handleBooking(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="bookName">Full Name</label>
+              <input type="text" id="bookName" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="bookPhone">Phone Number</label>
+              <input type="tel" id="bookPhone" placeholder="+91 XXXXX XXXXX" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="bookService">Service</label>
+            <select id="bookService" required>
+              <option value="">Select a service</option>
+              <optgroup label="Facial & Skin Care">
+                <option>Signature Gold Facial</option>
+                <option>D-Tan & Bleach</option>
+                <option>OxyGeneo Super Facial</option>
+                <option>Threading & Waxing</option>
+                <option>Cleanup & Polishing</option>
+              </optgroup>
+              <optgroup label="Bridal Services">
+                <option>Bridal Makeup (HD/Airbrush)</option>
+                <option>Pre-Bridal Package</option>
+                <option>Dulhan Mehndi</option>
+                <option>Bridal Saree Draping</option>
+                <option>Engagement & Reception Makeup</option>
+              </optgroup>
+              <optgroup label="Hair Services">
+                <option>Hair Cut & Styling</option>
+                <option>Hair Color & Highlights</option>
+                <option>Keratin Treatment</option>
+                <option>Hair Spa & Oil Massage</option>
+                <option>Hair Extensions</option>
+              </optgroup>
+              <optgroup label="Nail Art">
+                <option>Gel / Acrylic Nails</option>
+                <option>Nail Art</option>
+                <option>Manicure & Pedicure</option>
+              </optgroup>
+              <optgroup label="Body & Wellness">
+                <option>Full Body Waxing</option>
+                <option>Body Polishing</option>
+                <option>Aroma Therapy Massage</option>
+              </optgroup>
+              <optgroup label="Makeup">
+                <option>Party Makeup</option>
+                <option>Saree Draping + Hair Combo</option>
+                <option>Eye Makeup & Lash Extensions</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="bookDate">Preferred Date</label>
+            <input type="date" id="bookDate" required />
+          </div>
+          <div class="form-group">
+            <label for="bookMessage">Message (optional)</label>
+            <textarea id="bookMessage" placeholder="Tell us about your requirements..."></textarea>
+          </div>
+          <button type="submit" class="btn-gold submit-btn btn-pulse">✨ Book My Appointment</button>
+        </form>
+
+        <div class="contact-info reveal">
+          <div class="contact-card">
+            <h4>📍 Visit Us</h4>
+            <p>Kashish Beauty Parlour<br/>Near Main Market, Model Town<br/>India</p>
+          </div>
+          <div class="contact-card">
+            <h4>📞 Call / WhatsApp</h4>
+            <a href="tel:+919876543210">+91 98765 43210</a>
+            <a class="whatsapp-btn" href="https://wa.me/919876543210" target="_blank" rel="noopener">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Chat on WhatsApp
+            </a>
+          </div>
+          <div class="contact-card">
+            <h4>🕐 Timings</h4>
+            <p>Monday – Saturday: 10:00 AM – 8:00 PM<br/>Sunday: 11:00 AM – 6:00 PM</p>
+          </div>
+          <div class="contact-card">
+            <h4>📸 Follow Us</h4>
+            <p>Stay updated with our latest looks & offers</p>
+            <div class="social-links" style="margin-top:12px;">
+              <a href="#" class="social-link" aria-label="Instagram">📷</a>
+              <a href="#" class="social-link" aria-label="Facebook">📘</a>
+              <a href="#" class="social-link" aria-label="YouTube">🎬</a>
+            </div>
+          </div>
+          <div class="map-placeholder">
+            📍 Map — Kashish Beauty Parlour Location
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <div class="footer-divider"></div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="nav-logo-text">Kashish</span>
+          <p>Where beauty meets tradition. Premium beauty services crafted for the modern Indian woman. Making India beautiful, one client at a time.</p>
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="YouTube">🎬</a>
+            <a href="https://wa.me/919876543210" class="social-link" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+            <li><a href="#booking">Book Now</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Services</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Bridal Makeup</a></li>
+            <li><a href="#services">Hair Styling</a></li>
+            <li><a href="#services">Facials & Skincare</a></li>
+            <li><a href="#services">Mehndi</a></li>
+            <li><a href="#services">Nail Art</a></li>
+            <li><a href="#services">Body Spa</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+            <li><a href="mailto:hello@kashishbeauty.in">hello@kashishbeauty.in</a></li>
+            <li><a href="#">Near Main Market, Model Town</a></li>
+            <li><a href="#">Mon–Sat: 10AM – 8PM</a></li>
+            <li><a href="#">Sun: 11AM – 6PM</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        © 2025 Kashish Beauty Parlour. Made with ❤️ in India
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- Back to top -->
+  <a href="#home" class="back-to-top" id="backToTop" aria-label="Back to top">↑</a>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════ -->
+  <script>
+    /* ───────────────────────────────────────────
+       CUSTOM CURSOR
+    ─────────────────────────────────────────── */
+    const cursorDot = document.getElementById('cursorDot');
+    const cursorRing = document.getElementById('cursorRing');
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+    let petalCounter = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      cursorDot.style.left = mouseX - 6 + 'px';
+      cursorDot.style.top = mouseY - 6 + 'px';
+
+      // Petal trail (every 4th move)
+      petalCounter++;
+      if (petalCounter % 4 === 0) {
+        const petal = document.createElement('div');
+        petal.className = 'petal-trail';
+        petal.style.left = mouseX + 'px';
+        petal.style.top = mouseY + 'px';
+        document.body.appendChild(petal);
+        setTimeout(() => petal.remove(), 800);
+      }
+    });
+
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      cursorRing.style.left = ringX - 18 + 'px';
+      cursorRing.style.top = ringY - 18 + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Hover effect on interactive elements
+    document.querySelectorAll('a, button, .service-card, .gallery-item, .pricing-card, .filter-btn').forEach(el => {
+      el.addEventListener('mouseenter', () => cursorRing.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovering'));
+    });
+
+    /* ───────────────────────────────────────────
+       NAVBAR SCROLL
+    ─────────────────────────────────────────── */
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      if (window.scrollY > 600) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+
+    /* ───────────────────────────────────────────
+       MOBILE MENU
+    ─────────────────────────────────────────── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileDrawer.classList.toggle('open');
+      mobileOverlay.style.display = mobileDrawer.classList.contains('open') ? 'block' : 'none';
+      setTimeout(() => {
+        mobileOverlay.classList.toggle('visible', mobileDrawer.classList.contains('open'));
+      }, 10);
+    });
+
+    mobileOverlay.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileDrawer.classList.remove('open');
+      mobileOverlay.classList.remove('visible');
+      setTimeout(() => mobileOverlay.style.display = 'none', 400);
+    });
+
+    // Close drawer on link click
+    mobileDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileDrawer.classList.remove('open');
+        mobileOverlay.classList.remove('visible');
+        setTimeout(() => mobileOverlay.style.display = 'none', 400);
+      });
+    });
+
+    /* ───────────────────────────────────────────
+       HERO CANVAS PARTICLES
+    ─────────────────────────────────────────── */
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 80 : 200;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    class Particle {
+      constructor() {
+        this.reset();
+      }
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 3 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.3 - 0.1;
+        this.opacity = Math.random() * 0.6 + 0.2;
+        this.pulse = Math.random() * Math.PI * 2;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        this.pulse += 0.02;
+        if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+          this.reset();
+          this.y = canvas.height + 10;
+        }
+      }
+      draw() {
+        const alpha = this.opacity * (0.6 + 0.4 * Math.sin(this.pulse));
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = '#C9A84C';
+        ctx.shadowColor = '#C9A84C';
+        ctx.shadowBlur = this.size * 4;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    /* ───────────────────────────────────────────
+       SERVICES DATA & RENDERING
+    ─────────────────────────────────────────── */
+    const servicesData = [
+      { icon: '✦', cat: 'facial', catLabel: 'Facial & Skin Care', name: 'Signature Gold Facial', desc: '24K gold-infused luxury facial for radiant, youthful skin.', price: '₹1,499' },
+      { icon: '✦', cat: 'facial', catLabel: 'Facial & Skin Care', name: 'D-Tan & Bleach', desc: 'Full face, neck & arms de-tan with premium bleach.', price: '₹299' },
+      { icon: '✦', cat: 'facial', catLabel: 'Facial & Skin Care', name: 'OxyGeneo Super Facial', desc: '3-in-1 super facial — exfoliate, infuse & oxygenate.', price: '₹2,499' },
+      { icon: '👰', cat: 'bridal', catLabel: 'Bridal Services', name: 'Bridal Makeup', desc: 'HD, Airbrush or Traditional — your perfect bridal look.', price: '₹7,999' },
+      { icon: '👰', cat: 'bridal', catLabel: 'Bridal Services', name: 'Pre-Bridal Package', desc: 'Complete skin prep over 3 sittings for bridal glow.', price: '₹4,999' },
+      { icon: '🌺', cat: 'bridal', catLabel: 'Bridal Services', name: 'Dulhan Mehndi', desc: 'Intricate full hands & feet mehndi by expert artists.', price: '₹2,999' },
+      { icon: '💇‍♀️', cat: 'hair', catLabel: 'Hair Services', name: 'Hair Color & Highlights', desc: 'Global, Ombre or Balayage — transform your look.', price: '₹1,999' },
+      { icon: '💇‍♀️', cat: 'hair', catLabel: 'Hair Services', name: 'Keratin Treatment', desc: 'Premium smoothening for silky, frizz-free hair.', price: '₹3,499' },
+      { icon: '💅', cat: 'nails', catLabel: 'Nail Art', name: 'Gel / Acrylic Nails', desc: 'Stunning gel or acrylic extensions with custom art.', price: '₹899' },
+      { icon: '💅', cat: 'nails', catLabel: 'Nail Art', name: 'Manicure & Pedicure', desc: 'Regular, Spa or French — pamper your hands & feet.', price: '₹499' },
+      { icon: '🧖‍♀️', cat: 'body', catLabel: 'Body & Wellness', name: 'Full Body Waxing', desc: 'Rica, Chocolate or Liposoluble — smooth, glowing skin.', price: '₹1,299' },
+      { icon: '💄', cat: 'makeup', catLabel: 'Makeup', name: 'Party Makeup', desc: 'HD & Airbrush party glam with hair setting combo.', price: '₹2,499' },
+    ];
+
+    const servicesGrid = document.getElementById('servicesGrid');
+    servicesData.forEach((s, i) => {
+      const card = document.createElement('div');
+      card.className = 'service-card reveal';
+      card.dataset.category = s.cat;
+      card.style.transitionDelay = `${i * 0.08}s`;
+      card.innerHTML = `
+        <span class="service-icon">${s.icon}</span>
+        <div class="service-category">${s.catLabel}</div>
+        <div class="service-name">${s.name}</div>
+        <div class="service-desc">${s.desc}</div>
+        <div class="service-bottom">
+          <span class="service-price">${s.price} onwards</span>
+          <a href="#booking" class="service-book">Book</a>
+        </div>
+      `;
+      servicesGrid.appendChild(card);
+    });
+
+    /* ───────────────────────────────────────────
+       3D TILT ON SERVICE CARDS
+    ─────────────────────────────────────────── */
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / centerY * -8;
+        const rotateY = (x - centerX) / centerX * 8;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+      });
+    });
+
+    /* ───────────────────────────────────────────
+       GALLERY DATA & RENDERING
+    ─────────────────────────────────────────── */
+    const galleryData = [
+      { cat: 'bridal', label: 'Bridal', title: 'Royal Bridal Look', h: 320, colors: ['#8B1A4A','#2D1B69'] },
+      { cat: 'hair', label: 'Hair', title: 'Balayage Highlights', h: 240, colors: ['#2D1B69','#1A0A2E'] },
+      { cat: 'nails', label: 'Nails', title: 'Bridal Nail Art', h: 200, colors: ['#C9A84C','#8B1A4A'] },
+      { cat: 'bridal', label: 'Bridal', title: 'Mehndi Ceremony', h: 280, colors: ['#8B1A4A','#C9A84C'] },
+      { cat: 'skin', label: 'Skin', title: 'Gold Facial Glow', h: 220, colors: ['#C9A84C','#2D1B69'] },
+      { cat: 'hair', label: 'Hair', title: 'Wedding Hair Styling', h: 300, colors: ['#1A0A2E','#8B1A4A'] },
+      { cat: 'bridal', label: 'Bridal', title: 'Airbrush Bridal Glam', h: 260, colors: ['#8B1A4A','#1A0A2E'] },
+      { cat: 'nails', label: 'Nails', title: 'Gel Extensions', h: 200, colors: ['#2D1B69','#C9A84C'] },
+      { cat: 'skin', label: 'Skin', title: 'De-Tan Treatment', h: 240, colors: ['#1A0A2E','#C9A84C'] },
+      { cat: 'bridal', label: 'Bridal', title: 'Traditional Dulhan', h: 350, colors: ['#8B1A4A','#C9A84C'] },
+      { cat: 'hair', label: 'Hair', title: 'Keratin Smoothening', h: 220, colors: ['#2D1B69','#1A0A2E'] },
+      { cat: 'skin', label: 'Skin', title: 'OxyGeneo Results', h: 240, colors: ['#C9A84C','#1A0A2E'] },
+    ];
+
+    const galleryGrid = document.getElementById('galleryGrid');
+
+    function renderGallery(filter = 'all') {
+      galleryGrid.innerHTML = '';
+      const items = filter === 'all' ? galleryData : galleryData.filter(g => g.cat === filter);
+      items.forEach((g, i) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-item reveal';
+        item.style.transitionDelay = `${i * 0.06}s`;
+        item.dataset.category = g.cat;
+        item.innerHTML = `
+          <span class="gallery-label">${g.label}</span>
+          <div class="gallery-placeholder" style="height:${g.h}px; background: linear-gradient(135deg, ${g.colors[0]}, ${g.colors[1]});">
+            ${g.title}
+          </div>
+          <div class="gallery-overlay">
+            <span>${g.title}</span>
+            <small>View More</small>
+          </div>
+        `;
+        item.addEventListener('click', () => openLightbox(g));
+        galleryGrid.appendChild(item);
+      });
+      // Re-observe new elements
+      observeElements();
+    }
+    renderGallery();
+
+    // Filter buttons
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderGallery(btn.dataset.filter);
+      });
+    });
+
+    // Lightbox
+    function openLightbox(g) {
+      const lightbox = document.getElementById('lightbox');
+      const content = document.getElementById('lightboxContent');
+      content.innerHTML = `<div class="gallery-placeholder" style="width:600px;max-width:80vw;height:400px;background:linear-gradient(135deg,${g.colors[0]},${g.colors[1]});display:flex;align-items:center;justify-content:center;font-family:var(--font-sub);font-size:1.5rem;color:var(--text-primary);">${g.title}</div>`;
+      lightbox.classList.add('active');
+    }
+
+    document.getElementById('lightboxClose').addEventListener('click', () => {
+      document.getElementById('lightbox').classList.remove('active');
+    });
+
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) {
+        document.getElementById('lightbox').classList.remove('active');
+      }
+    });
+
+    /* ───────────────────────────────────────────
+       TESTIMONIALS DATA & RENDERING
+    ─────────────────────────────────────────── */
+    const testimonials = [
+      { name: 'Priya Sharma', service: 'Bridal Makeup', initials: 'PS', quote: 'Kashish made me feel like an absolute queen on my wedding day. The airbrush makeup lasted 14 hours and I received compliments all night! Best decision ever.' },
+      { name: 'Neha Verma', service: 'Hair Color & Styling', initials: 'NV', quote: 'The balayage they did is absolutely gorgeous — my hair has never looked this good. The team really understood the exact shade I wanted.' },
+      { name: 'Sunita Kaur', service: 'Gold Facial', initials: 'SK', quote: 'The 24K Gold Facial is pure luxury. My skin was literally glowing for days after. I\'ve become a regular now — can\'t imagine going anywhere else!' },
+      { name: 'Ritika Agarwal', service: 'Pre-Bridal Package', initials: 'RA', quote: 'I took the full pre-bridal package and the transformation was incredible. Three sessions and my skin was wedding-ready. Worth every rupee!' },
+      { name: 'Pooja Mehta', service: 'Dulhan Mehndi', initials: 'PM', quote: 'The mehndi artist at Kashish is phenomenally talented. The design was intricate, the color came out so dark and rich. Everyone asked who did my mehndi!' },
+      { name: 'Ananya Singh', service: 'Party Makeup', initials: 'AS', quote: 'I had party makeup done for my anniversary and was stunned by the result. They perfectly matched the look to my outfit. Truly professional and friendly team.' },
+    ];
+
+    const testimonialTrack = document.getElementById('testimonialTrack');
+    // Duplicate for seamless scroll
+    const allTestimonials = [...testimonials, ...testimonials];
+    allTestimonials.forEach(t => {
+      const card = document.createElement('div');
+      card.className = 'testimonial-card';
+      card.innerHTML = `
+        <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+        <div class="testimonial-quote">"${t.quote}"</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">${t.initials}</div>
+          <div>
+            <div class="testimonial-name">${t.name}</div>
+            <div class="testimonial-service">${t.service}</div>
+          </div>
+        </div>
+      `;
+      testimonialTrack.appendChild(card);
+    });
+
+    /* ───────────────────────────────────────────
+       INTERSECTION OBSERVER — REVEAL ANIMATIONS
+    ─────────────────────────────────────────── */
+    function observeElements() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal, .reveal-left').forEach(el => observer.observe(el));
+    }
+    observeElements();
+
+    /* ───────────────────────────────────────────
+       STAT COUNTER ANIMATION
+    ─────────────────────────────────────────── */
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseFloat(el.dataset.target);
+          const isDecimal = el.dataset.decimal === 'true';
+          const duration = 2000;
+          const start = performance.now();
+
+          function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = eased * target;
+
+            if (isDecimal) {
+              el.textContent = current.toFixed(1) + '★';
+            } else {
+              el.textContent = Math.floor(current).toLocaleString() + '+';
+            }
+
+            if (progress < 1) requestAnimationFrame(update);
+          }
+          requestAnimationFrame(update);
+          statObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
+
+    /* ───────────────────────────────────────────
+       TIMELINE LINE ANIMATION
+    ─────────────────────────────────────────── */
+    const timelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.getElementById('timelineFill').classList.add('animated');
+          document.querySelectorAll('.step-circle').forEach((c, i) => {
+            setTimeout(() => c.classList.add('glowing'), i * 400);
+          });
+          timelineObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    timelineObserver.observe(document.getElementById('timeline'));
+
+    /* ───────────────────────────────────────────
+       BOOKING FORM
+    ─────────────────────────────────────────── */
+    function handleBooking(e) {
+      e.preventDefault();
+      const name = document.getElementById('bookName').value;
+      const phone = document.getElementById('bookPhone').value;
+      const service = document.getElementById('bookService').value;
+      const date = document.getElementById('bookDate').value;
+      const message = document.getElementById('bookMessage').value;
+
+      // WhatsApp message
+      const waMsg = encodeURIComponent(
+        `Hi Kashish Beauty Parlour! 🌸\n\nI'd like to book an appointment:\n\n` +
+        `👤 Name: ${name}\n📞 Phone: ${phone}\n💄 Service: ${service}\n📅 Date: ${date}\n` +
+        (message ? `💬 Message: ${message}\n` : '') +
+        `\nPlease confirm my booking. Thank you!`
+      );
+
+      window.open(`https://wa.me/919876543210?text=${waMsg}`, '_blank');
+
+      // Show success
+      const btn = e.target.querySelector('.submit-btn');
+      btn.textContent = '✅ Redirecting to WhatsApp...';
+      btn.style.background = '#25D366';
+      setTimeout(() => {
+        btn.textContent = '✨ Book My Appointment';
+        btn.style.background = '';
+        e.target.reset();
+      }, 3000);
+
+      return false;
+    }
+
+    /* ───────────────────────────────────────────
+       SMOOTH SCROLL FOR ANCHOR LINKS
+    ─────────────────────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* ───────────────────────────────────────────
+       SET MIN DATE FOR BOOKING
+    ─────────────────────────────────────────── */
+    const dateInput = document.getElementById('bookDate');
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.setAttribute('min', today);
+    }
+
+  </script>
+</body>
+</html>
